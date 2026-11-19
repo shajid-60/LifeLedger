@@ -113,6 +113,7 @@ erDiagram
         timestamptz expires_at
         timestamptz revoked_at
         timestamptz created_at
+        timestamptz updated_at
         varchar created_by
     }
     service_records {
@@ -137,6 +138,7 @@ erDiagram
         varchar part_number UK
         varchar kind
         timestamptz created_at
+        timestamptz updated_at
         varchar created_by
     }
     service_record_parts {
@@ -151,10 +153,12 @@ erDiagram
         bigint from_user_id FK "sender"
         bigint to_user_id FK "recipient"
         varchar status "PENDING ACCEPTED COMPLETED REJECTED CANCELLED"
-        timestamptz created_at
         timestamptz accepted_at
         timestamptz completed_at
         timestamptz closed_at "rejected or cancelled"
+        timestamptz created_at
+        timestamptz updated_at
+        varchar created_by
     }
     ownership_history {
         bigint id PK
@@ -162,6 +166,9 @@ erDiagram
         bigint owner_id FK "users"
         timestamptz owned_from
         timestamptz owned_to "null = current owner"
+        timestamptz created_at
+        timestamptz updated_at
+        varchar created_by
     }
 ```
 
@@ -187,6 +194,6 @@ erDiagram
 ## Rules
 
 - **Naming:** snake_case, plural table names, `id BIGINT GENERATED ALWAYS AS IDENTITY`, FKs named `<entity>_id` (role-named FKs such as `from_user_id`, `approved_by` where one table references `users` twice).
-- **Auditing columns:** `created_at`, `updated_at`, `created_by` via the shared `BaseEntity` and JPA auditing.
+- **Auditing columns:** `created_at`, `updated_at`, `created_by` via the shared `BaseEntity` and JPA auditing, on every table except the reference tables (`roles`, `product_categories`), the join tables (`user_roles`, `service_record_parts`) and the log tables (`revoked_tokens`, `audit_events`). The schema itself is `src/main/resources/db/migration/V1__init_schema.sql`.
 - **History is never overwritten:** service records are voided, not deleted; ownership history rows are closed with `owned_to`; audit events are insert-only.
 - **Privacy:** `serial_number` and the owner never appear in the public passport DTO.

@@ -178,12 +178,20 @@ public interface RepairShopQueryService {
     Optional<Long> findApprovedShopIdByManager(Long userId);
 }
 
-// M1 -> M2, M3  (package com.lifeledger.common)
+// M1 -> M2, M3  (package com.lifeledger.common.security)
 public interface CurrentUserProvider {
-    Long currentUserId();
-    boolean hasRole(String role);
+    Long currentUserId();              // 401 if nobody is logged in
+    AuthenticatedUser currentUser();   // id, email, roles
+    boolean hasRole(String role);      // e.g. hasRole("ADMIN")
 }
-public record AuditableEvent(Long actorId, String action, String entityType, Long entityId, Map<String, Object> details) {}
+public record AuthenticatedUser(Long id, String email, Set<String> roles) {}
+
+// M1 <- M2, M3  (package com.lifeledger.audit) — publish with ApplicationEventPublisher
+public record AuditableEvent(Long actorId, String action, String entityType, Long entityId,
+                             Map<String, Object> details, Instant occurredAt) {
+    static AuditableEvent of(Long actorId, String action, String entityType, Long entityId,
+                             Map<String, Object> details);   // sets occurredAt = now
+}
 
 // M2 -> M3  (package com.lifeledger.passport)
 public interface ProductAccessService {
