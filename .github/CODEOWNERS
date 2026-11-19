@@ -11,13 +11,12 @@
 /.github/                                  @satoufiq
 
 # M2 - Ariful: product, passport, Flyway, Docker
-# TODO(M2): replace ARIFUL_GITHUB_USERNAME with your GitHub username and uncomment.
-# /src/main/java/com/lifeledger/product/     @ARIFUL_GITHUB_USERNAME
-# /src/main/java/com/lifeledger/warranty/    @ARIFUL_GITHUB_USERNAME
-# /src/main/java/com/lifeledger/passport/    @ARIFUL_GITHUB_USERNAME
-# /src/main/resources/db/migration/          @ARIFUL_GITHUB_USERNAME
-# /Dockerfile                                @ARIFUL_GITHUB_USERNAME
-# /docker-compose.yml                        @ARIFUL_GITHUB_USERNAME
+/src/main/java/com/lifeledger/product/     @ArifulHridoy
+/src/main/java/com/lifeledger/warranty/    @ArifulHridoy
+/src/main/java/com/lifeledger/passport/    @ArifulHridoy
+/src/main/resources/db/migration/          @ArifulHridoy
+/Dockerfile                                @ArifulHridoy
+/docker-compose.yml                        @ArifulHridoy
 
 # M3 - Majharul: service history, ownership, docs
 /src/main/java/com/lifeledger/servicerecord/  @shajid-60
