@@ -1,0 +1,31 @@
+# Base configuration. Every secret comes from an environment variable.
+# Profile files (dev, test, prod) and .env.example are added by M2.
+spring:
+  application:
+    name: lifeledger
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/lifeledger}
+    username: ${DB_USERNAME:lifeledger}
+    password: ${DB_PASSWORD:lifeledger}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

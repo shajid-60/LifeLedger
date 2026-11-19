@@ -1,0 +1,26 @@
+# Build output
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Secrets — never commit real values; .env.example is committed instead
+.env
+*.env
+!.env.example
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+.factorypath
+
+# Frontend
+node_modules/
+frontend/dist/
+
+# OS / logs
+.DS_Store
+Thumbs.db
+*.log
