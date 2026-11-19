@@ -1,0 +1,24 @@
+# Each module's owner is asked to review changes to it automatically.
+# Later lines take precedence over earlier ones.
+
+# M1 - Shahriar: identity, security, shared code, CI
+/src/main/java/com/lifeledger/common/      @satoufiq
+/src/main/java/com/lifeledger/auth/        @satoufiq
+/src/main/java/com/lifeledger/user/        @satoufiq
+/src/main/java/com/lifeledger/repairshop/  @satoufiq
+/src/main/java/com/lifeledger/admin/       @satoufiq
+/src/main/java/com/lifeledger/audit/       @satoufiq
+/.github/                                  @satoufiq
+
+# M2 - Ariful: product, passport, Flyway, Docker
+/src/main/java/com/lifeledger/product/     @ArifulHridoy
+/src/main/java/com/lifeledger/warranty/    @ArifulHridoy
+/src/main/java/com/lifeledger/passport/    @ArifulHridoy
+/src/main/resources/db/migration/          @ArifulHridoy
+/Dockerfile                                @ArifulHridoy
+/docker-compose.yml                        @ArifulHridoy
+
+# M3 - Majharul: service history, ownership, docs
+/src/main/java/com/lifeledger/servicerecord/  @shajid-60
+/src/main/java/com/lifeledger/ownership/      @shajid-60
+/docs/                                        @shajid-60
