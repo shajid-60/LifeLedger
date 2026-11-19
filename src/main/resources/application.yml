@@ -1,5 +1,5 @@
-# Base configuration. Every secret comes from an environment variable.
-# Profile files (dev, test, prod) and .env.example are added by M2.
+# Base configuration shared by every profile. Every secret comes from an environment variable;
+# see .env.example. Profile files: application-dev.yml, application-test.yml, application-prod.yml.
 spring:
   application:
     name: lifeledger
@@ -16,7 +16,8 @@ spring:
     locations: classpath:db/migration
 
 server:
-  port: 8080
+  # Render injects PORT; locally it is 8080
+  port: ${PORT:8080}
   error:
     include-stacktrace: never
 
@@ -29,3 +30,8 @@ management:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+lifeledger:
+  jwt:
+    secret: ${JWT_SECRET:}
+    expiration: ${JWT_EXPIRATION:PT1H}

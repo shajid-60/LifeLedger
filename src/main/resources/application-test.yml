@@ -1,0 +1,12 @@
+# Automated tests. Activate with @ActiveProfiles("test"); the database comes from
+# Testcontainers (@ServiceConnection), so no datasource settings are needed here.
+lifeledger:
+  jwt:
+    # Test-only key, never used outside tests
+    secret: test-secret-key-for-automated-tests-only-0123456789
+    expiration: PT1H
+
+logging:
+  level:
+    com.lifeledger: INFO
+    org.testcontainers: WARN

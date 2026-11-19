@@ -1,0 +1,13 @@
+# Production (Render). All values come from environment variables set in the Render dashboard.
+server:
+  # Render terminates HTTPS in front of the app
+  forward-headers-strategy: framework
+
+spring:
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    com.lifeledger: INFO
